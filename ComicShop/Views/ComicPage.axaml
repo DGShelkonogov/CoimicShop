@@ -1,0 +1,82 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ComicShop.Views.ComicPage">
+
+	<Grid>
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="30"/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition Width="60"/>
+				</Grid.ColumnDefinitions>
+				<TextBox Text="{Binding SearchText}"/>
+				<Button Grid.Column="1" Content="Поиск" Command="{Binding Search}"/>
+			</Grid>
+			
+			<Grid Grid.Row="1">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="200"/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+				
+				<Grid Grid.Column="0">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="30"/>
+						<RowDefinition Height="90"/>
+						<RowDefinition Height="30"/>
+						<RowDefinition/>
+						<RowDefinition Height="30"/>
+					</Grid.RowDefinitions>
+
+					<TextBox 
+						Grid.Row="0"
+						Text="{Binding ComicBuffer.Title}"/>
+					<TextBox 
+						Grid.Row="1"
+						Text="{Binding ComicBuffer.Description}"/>
+					<TextBox
+						Grid.Row="2"
+						Text="{Binding ComicBuffer.Price}"/>
+
+					<Grid Grid.Row="4">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition/>
+							<ColumnDefinition/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+						
+						<Button 
+							Grid.Column="0"
+							Command="{Binding Add}"
+							Content="Добавить"/>
+						<Button
+							Grid.Column="1"
+							Command="{Binding Edit}"
+							Content="Изменить"/>
+						<Button
+							Grid.Column="2"
+							Command="{Binding Remove}"
+							Content="Удалить"/>
+					</Grid>
+
+				</Grid>
+
+				<DataGrid Grid.Column="1" Items="{Binding Comics}" AutoGenerateColumns="False" SelectedItem="{Binding ComicSelected}">
+					<DataGrid.Columns>
+						<DataGridTextColumn Header="Название"  Binding="{Binding Title}"/>
+						<DataGridTextColumn Header="Описание" Binding="{Binding Description}" />
+						<DataGridTextColumn Header="Цена" Binding="{Binding Price}" />
+					</DataGrid.Columns>
+				</DataGrid>
+			</Grid>
+		</Grid>
+	</Grid>
+</UserControl>

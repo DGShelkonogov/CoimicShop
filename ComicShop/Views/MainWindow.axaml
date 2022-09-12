@@ -1,0 +1,49 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ComicShop.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="ComicShop.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+		xmlns:views="clr-namespace:ComicShop.Views"
+        Title="ComicShop">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+			<TabControl >
+				<TabItem Header="Продажи" VerticalContentAlignment="Center">
+					<views:ActOfSalePage DataContext="{Binding ActOfSalePageViewModel}"/>
+				</TabItem>
+
+				<TabItem Header="Комиксы" VerticalContentAlignment="Center">
+					<views:ComicPage DataContext="{Binding ComicPageViewModel}"/>
+				</TabItem>
+
+				<TabItem Header="Доставка" VerticalContentAlignment="Center">
+					<views:DeliveryPage DataContext="{Binding DeliveryPageViewModel}"/>
+				</TabItem>
+
+				<TabItem Header="Сотрудники" VerticalContentAlignment="Center">
+					<views:EmployeePage DataContext="{Binding EmployeePageViewModel}"/>
+				</TabItem>
+
+				<TabItem Header="Выплаты" VerticalContentAlignment="Center">
+					<views:PayoutPage DataContext="{Binding PayoutPageViewModel}"/>
+				</TabItem>
+
+				<TabItem Header="Должности" VerticalContentAlignment="Center">
+					<views:PositionPage DataContext="{Binding PositionPageViewModel}"/>
+				</TabItem>
+
+				<TabItem Header="Поставщики" VerticalContentAlignment="Center">
+					<views:ProviderPage DataContext="{Binding ProviderPageViewModel}"/>
+				</TabItem>
+
+				<TabItem Header="Склады" VerticalContentAlignment="Center">
+					<views:StoragePage DataContext="{Binding StoragePageViewModel}"/>
+				</TabItem>
+			</TabControl>
+</Window>
