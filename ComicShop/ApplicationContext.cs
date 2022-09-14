@@ -20,12 +20,12 @@ namespace ComicShop
         public DbSet<Comic> Comics { get; set; }
 
         public ApplicationContext()
-        {
-            Database.EnsureCreated();
+        { 
+             Database.EnsureCreated();
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=ComicSgop;Username=postgres;Password=333");
+            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=ComicSgop;Username=postgres;Password=123");
         }
 
         public static bool validData(Object args)

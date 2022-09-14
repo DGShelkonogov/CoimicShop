@@ -28,7 +28,7 @@ namespace ComicShop.ViewModels
             DeliveryPageViewModel = new DeliveryPageViewModel();
             EmployeePageViewModel = new EmployeePageViewModel();
             PayoutPageViewModel = new PayoutPageViewModel();
-            PositionPageViewModel = new PositionPageViewModel();
+            PositionPageViewModel = new PositionPageViewModel(connection);
             ProviderPageViewModel = new ProviderPageViewModel();
             StoragePageViewModel = new StoragePageViewModel();
            
