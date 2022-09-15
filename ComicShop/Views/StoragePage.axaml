@@ -16,7 +16,7 @@
 					<ColumnDefinition/>
 					<ColumnDefinition Width="60"/>
 				</Grid.ColumnDefinitions>
-				<TextBox Text="{Binding SearchText}"/>
+				<TextBox Text="{Binding SearchText}" Watermark="Поиск"/>
 				<Button Grid.Column="1" Content="Поиск" Command="{Binding Search}"/>
 			</Grid>
 
@@ -30,16 +30,18 @@
 					<Grid.RowDefinitions>
 						<RowDefinition Height="30"/>
 						<RowDefinition Height="30"/>
+						<RowDefinition Height="30"/>
 						<RowDefinition/>
 						<RowDefinition Height="30"/>
 					</Grid.RowDefinitions>
 
 					<TextBox
 						Grid.Row="0"
+						Watermark="Название"
 						Text="{Binding StorageSelected.Title}"/>
 
-
-					<ComboBox Grid.Row="1" Items="{Binding ProvidersAll}" SelectedItem="{Binding StorageSelected.Provider}">
+					<TextBlock Grid.Row="1"  Text="Поставщики" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+					<ComboBox Grid.Row="2" Items="{Binding ProvidersAll}" SelectedItem="{Binding StorageSelected.Provider}">
 						<ComboBox.ItemTemplate>
 							<DataTemplate>
 								<TextBlock Text="{Binding Name}"/>

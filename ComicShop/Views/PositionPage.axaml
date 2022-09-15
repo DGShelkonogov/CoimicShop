@@ -16,7 +16,7 @@
 					<ColumnDefinition/>
 					<ColumnDefinition Width="60"/>
 				</Grid.ColumnDefinitions>
-				<TextBox Text="{Binding SearchText}"/>
+				<TextBox Text="{Binding SearchText}" Watermark="Поиск"/>
 				<Button Grid.Column="1" Content="Поиск" Command="{Binding Search}"/>
 			</Grid>
 
@@ -36,9 +36,11 @@
 
 					<TextBox
 						Grid.Row="0"
+						Watermark="Название"
 						Text="{Binding PositionSelected.Title}"/>
 					<TextBox
 						Grid.Row="1"
+						Watermark="Оклад"
 						Text="{Binding PositionSelected.Salary}"/>
 
 					<Grid Grid.Row="4">

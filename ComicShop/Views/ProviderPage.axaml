@@ -16,7 +16,7 @@
 					<ColumnDefinition/>
 					<ColumnDefinition Width="60"/>
 				</Grid.ColumnDefinitions>
-				<TextBox Text="{Binding SearchText}"/>
+				<TextBox Text="{Binding SearchText}" Watermark="Поиск"/>
 				<Button Grid.Column="1" Content="Поиск" Command="{Binding Search}"/>
 			</Grid>
 
@@ -31,18 +31,23 @@
 						<RowDefinition Height="30"/>
 						<RowDefinition Height="30"/>
 						<RowDefinition Height="30"/>			
+						<RowDefinition Height="30"/>			
 						<RowDefinition/>
 						<RowDefinition Height="30"/>
 					</Grid.RowDefinitions>
 
 					<TextBox
 						Grid.Row="0"
+						Watermark="Название"
 						Text="{Binding ProviderSelected.Name}"/>
 					<TextBox
 						Grid.Row="1"
+						Watermark="Страна"
 						Text="{Binding ProviderSelected.CountryProvider}"/>
 
-					<ComboBox Grid.Row="2" Items="{Binding ComicsAll}" SelectedItem="{Binding ComicSelected}">
+					<TextBlock Grid.Row="2"  Text="Комиксы" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+					
+					<ComboBox Grid.Row="3" Items="{Binding ComicsAll}" SelectedItem="{Binding ComicSelected}">
 						<ComboBox.ItemTemplate>
 							<DataTemplate>
 								<TextBlock Text="{Binding Title}"/>
@@ -50,7 +55,7 @@
 						</ComboBox.ItemTemplate>
 					</ComboBox>
 
-					<ListBox Grid.Row="3" Items="{Binding ProviderSelected.Сomics}">
+					<ListBox Grid.Row="4" Items="{Binding ProviderSelected.Сomics}">
 						<ListBox.ItemTemplate>
 							<DataTemplate>
 								<Grid>

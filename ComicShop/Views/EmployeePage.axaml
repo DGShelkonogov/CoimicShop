@@ -16,7 +16,7 @@
 					<ColumnDefinition/>
 					<ColumnDefinition Width="60"/>
 				</Grid.ColumnDefinitions>
-				<TextBox Text="{Binding SearchText}"/>
+				<TextBox Text="{Binding SearchText}" Watermark="Поиск"/>
 				<Button Grid.Column="1" Content="Поиск" Command="{Binding Search}"/>
 			</Grid>
 
@@ -28,6 +28,7 @@
 
 				<Grid Grid.Column="0">
 					<Grid.RowDefinitions>
+						<RowDefinition Height="30"/>
 						<RowDefinition Height="30"/>
 						<RowDefinition Height="30"/>
 						<RowDefinition Height="30"/>
@@ -57,7 +58,9 @@
 						Watermark="Количество часов"
 						Text="{Binding EmployeeSelected.WorkTime}"/>
 
-					<ComboBox Grid.Row="4" Items="{Binding PositionsAll}" SelectedItem="{Binding EmployeeSelected.Position}">
+					<TextBlock Grid.Row="4"  Text="Дата рождения" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+					
+					<ComboBox Grid.Row="5" Items="{Binding PositionsAll}" SelectedItem="{Binding EmployeeSelected.Position}">
 						<ComboBox.ItemTemplate>
 							<DataTemplate>
 								<TextBlock Text="{Binding Title}"/>
