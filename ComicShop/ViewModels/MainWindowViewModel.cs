@@ -25,12 +25,12 @@ namespace ComicShop.ViewModels
          
             ActOfSalePageViewModel = new ActOfSalePageViewModel(connection);
             ComicPageViewModel = new ComicPageViewModel(connection);
-            DeliveryPageViewModel = new DeliveryPageViewModel();
-            EmployeePageViewModel = new EmployeePageViewModel();
-            PayoutPageViewModel = new PayoutPageViewModel();
+            DeliveryPageViewModel = new DeliveryPageViewModel(connection);
+            EmployeePageViewModel = new EmployeePageViewModel(connection);
+            PayoutPageViewModel = new PayoutPageViewModel(connection); // опнбепхрэ
             PositionPageViewModel = new PositionPageViewModel(connection);
-            ProviderPageViewModel = new ProviderPageViewModel();
-            StoragePageViewModel = new StoragePageViewModel();
+            ProviderPageViewModel = new ProviderPageViewModel(connection);
+            StoragePageViewModel = new StoragePageViewModel(connection);
            
 
         }

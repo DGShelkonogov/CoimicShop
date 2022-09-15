@@ -38,13 +38,13 @@
 
 					<TextBox 
 						Grid.Row="0"
-						Text="{Binding ComicBuffer.Title}"/>
+						Text="{Binding ComicSelected.Title}"/>
 					<TextBox 
 						Grid.Row="1"
-						Text="{Binding ComicBuffer.Description}"/>
+						Text="{Binding ComicSelected.Description}"/>
 					<TextBox
 						Grid.Row="2"
-						Text="{Binding ComicBuffer.Price}"/>
+						Text="{Binding ComicSelected.Price}"/>
 
 					<Grid Grid.Row="4">
 						<Grid.ColumnDefinitions>

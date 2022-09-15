@@ -25,7 +25,7 @@ namespace ComicShop
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=ComicSgop;Username=postgres;Password=123");
+            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=ComicSgop;Username=postgres;Password=333");
         }
 
         public static bool validData(Object args)

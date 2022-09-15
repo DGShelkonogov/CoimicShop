@@ -125,26 +125,6 @@ namespace ComicShop.ViewModels
             ActOfSales = new(db.ActOfSales.ToList());
             Comics = new(db.Comics.ToList());
 
-            Comics = new ObservableCollection<Comic>
-            {
-                new Comic
-                {
-                    Title = "123",
-                    Price = 123
-                },
-                new Comic
-                {
-                    Title = "312",
-                    Price = 123
-                },
-                new Comic
-                {
-                    Title = "345",
-                    Price = 123
-                }
-            };
-
-
             Add = ReactiveCommand.Create(() =>
             {
                 SelectedComicComboBox = null;
@@ -196,8 +176,13 @@ namespace ComicShop.ViewModels
                     int sum = 0;
                     foreach (var i in ComicsInAct)
                         sum += (i.Amount * i.Comic.Price);
+
+                    var obj = new ActOfSale { Comics = ComicsInAct, Date = DateTime.Now, Sum = sum };
+
+                    ActOfSales.Add(obj);
+                    db.ActOfSales.Add(obj);
+                    db.SaveChanges();
                     
-                    ActOfSales.Add(new ActOfSale { Comics = ComicsInAct, Date = DateTime.Now, Sum = sum });
                     VisibleListMode = true;
                     VisibleEditMode = false;
                 }
@@ -227,7 +212,6 @@ namespace ComicShop.ViewModels
                     .Include(x => x.Comics)
                     .Where(x => x.Date.ToString()
                     .Contains(SearchText)).ToList());
-               
             });
         }
     }

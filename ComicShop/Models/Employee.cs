@@ -22,11 +22,11 @@ namespace ComicShop.Models
         public string MiddleName { get; set; }
 
         [Column(TypeName = "Date")]
-        DateTime DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
-        int WorkTime { get; set; }
+        public int WorkTime { get; set; }
 
         [Required]
-        Position Position { get; set; }
+        public Position Position { get; set; }
     }
 }

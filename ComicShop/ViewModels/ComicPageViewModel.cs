@@ -9,7 +9,7 @@ namespace ComicShop.ViewModels
 {
     public class ComicPageViewModel : ViewModelBase
     {
-       
+        
         public ICommand Add { get; private set; }
         public ICommand Edit { get; private set; }
         public ICommand Remove { get; private set; }
@@ -32,30 +32,29 @@ namespace ComicShop.ViewModels
             get => _comicSelected;
             set => this.RaiseAndSetIfChanged(ref _comicSelected, value);
         }
-        private Comic _comicBuffer;
-        public Comic ComicBuffer
-        {
-            get => _comicBuffer;
-            set => this.RaiseAndSetIfChanged(ref _comicBuffer, value);
-        }
         ApplicationContext db;
         public ComicPageViewModel(ApplicationContext applicationContext)
         {
             db = applicationContext;
             Comics = new(db.Comics.ToList());
-            ComicBuffer = new Comic();
-
-
+            ComicSelected = new Comic();
             Add = ReactiveCommand.Create(() =>
             {
+
                 try
                 {
-                    if (ApplicationContext.validData(ComicBuffer))
+                    if (ApplicationContext.validData(ComicSelected))
                     {
-                        Comics.Add(ComicBuffer);
-                        // db.Comics.Add(ComicBuffer);
-                        // db.SaveChanges();
-                        ComicBuffer = new Comic();
+                        var obj = new Comic
+                        {
+                            Title = ComicSelected.Title,
+                            Description = ComicSelected.Description,
+                            Price = ComicSelected.Price,
+                        };
+                        Comics.Add(obj);
+                        db.Comics.Add(obj);
+                        db.SaveChanges();
+                        ComicSelected = new Comic();
                     }
                 }
                 catch (Exception ex) { }
@@ -69,7 +68,7 @@ namespace ComicShop.ViewModels
                     {
                         db.Comics.Update(ComicSelected);
                         db.SaveChanges();
-                        ComicBuffer = new Comic();
+                        ComicSelected = new Comic();
                     }
                 }
                 catch (Exception ex) { }
@@ -79,10 +78,10 @@ namespace ComicShop.ViewModels
 
                 if (ComicSelected != null)
                 {
+                    db.Comics.Remove(ComicSelected);
                     Comics.Remove(ComicSelected);
-                    //  db.Comics.Remove(ComicSelected);
-                    // db.SaveChanges();
-                    ComicBuffer = new Comic();
+                    db.SaveChanges();
+                    ComicSelected = new Comic();
                 }
             });
             Search = ReactiveCommand.Create(() =>
@@ -99,5 +98,6 @@ namespace ComicShop.ViewModels
                 .ToList());
             });
         }
+
     }
 }

@@ -4,5 +4,171 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ComicShop.Views.DeliveryPage">
-	Welcome to DeliveryPage!
+	<Grid>
+
+
+
+
+
+		<Grid IsVisible="{Binding VisibleListMode}">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="30"/>
+				<RowDefinition/>
+				<RowDefinition Height="60"/>
+			</Grid.RowDefinitions>
+
+			<Grid Grid.Row="0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition Width="80"/>
+				</Grid.ColumnDefinitions>
+				<TextBox Text="{Binding SearchText}"/>
+				<Button Grid.Column="1" Command="{Binding Search}" Content="Поиск"/>
+			</Grid>
+
+			<DataGrid Grid.Row="1" Items="{Binding Deliverys}" AutoGenerateColumns="False" SelectedItem="{Binding SelectedDelivery}">
+				<DataGrid.Columns>
+
+					<DataGridTextColumn Header="Склад" Binding="{Binding Storage.Title}" />
+
+					<DataGridTemplateColumn Header="Комиксы">
+						<DataTemplate>
+							<Grid>
+								<ListBox Items="{Binding Сomics}">
+									<ListBox.ItemTemplate>
+										<DataTemplate>
+											<Grid>
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition/>
+													<ColumnDefinition/>
+													<ColumnDefinition/>
+												</Grid.ColumnDefinitions>
+
+												<TextBlock Grid.Column="0" Text="{Binding Comic.Title}"/>
+												<TextBlock Grid.Column="1" Text=" в количестве: "/>
+												<TextBlock Grid.Column="2" Text="{Binding Amount}"/>
+											</Grid>
+										</DataTemplate>
+									</ListBox.ItemTemplate>
+								</ListBox>
+							</Grid>
+						</DataTemplate>
+					</DataGridTemplateColumn>
+				</DataGrid.Columns>
+			</DataGrid>
+
+			<Grid Grid.Row="2">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+
+				<Button
+					Grid.Column="0"
+					Content="Добавить"
+					Command="{Binding Add}"/>
+
+				<Button
+					Grid.Column="2"
+					Content="Удалить"
+					Command="{Binding Remove}"/>
+			</Grid>
+		</Grid>
+
+		<Grid IsVisible="{Binding VisibleEditMode}">
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition Height="30"/>
+				<RowDefinition Height="30"/>
+				<RowDefinition Height="40"/>
+			</Grid.RowDefinitions>
+
+			<ListBox Items="{Binding ComicsStorage}" SelectedItem="{Binding SelectedComicStorageListBox}">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+							</Grid.ColumnDefinitions>
+
+							<TextBlock Grid.Column="0" Text="{Binding Comic.Title}"/>
+							<TextBlock Grid.Column="1" Text="{Binding Amount}"/>
+						</Grid>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+
+			<Grid Grid.Row="1">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="100"/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+
+				<TextBlock Text="Склад"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+				<ComboBox Grid.Column="1" IsEnabled="{Binding StoragesIsEnabled}" Items="{Binding Storages}" SelectedItem="{Binding SelectedStorageComboBox}">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Title}"/>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+			</Grid>
+			
+
+			<Grid Grid.Row="2">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="100"/>
+					<ColumnDefinition/>
+					<ColumnDefinition Width="50"/>
+					<ColumnDefinition Width="50"/>
+					<ColumnDefinition Width="50"/>
+				</Grid.ColumnDefinitions>
+				
+				<TextBlock Text="Комикс" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+				
+				<ComboBox Grid.Column="1" Items="{Binding SelectedStorageComboBox.Provider.Сomics}" SelectedItem="{Binding SelectedComicComboBox}">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Title}"/>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+				<Button Grid.Column="2" Content="←" Command="{Binding DecrementationComicAmount}"/>
+				<TextBlock Grid.Column="3" Text="{Binding AmountComic}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+				<Button Grid.Column="4" Content="→" Command="{Binding IncrementationComicAmount}"/>
+			</Grid>
+			
+			
+			
+
+			<Grid Grid.Row="4">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+
+				<Button
+					Grid.Column="0"
+					Content="Назад"
+					Command="{Binding Back}"/>
+				<Button
+					Grid.Column="1"
+					Content="Добавить"
+					Command="{Binding AddComic}"/>
+				<Button
+					Grid.Column="2"
+					Content="Удалить"
+					Command="{Binding RemoveComic}"/>
+				<Button
+					Grid.Column="3"
+					Content="Сохранить"
+					Command="{Binding SaveActOfSale}"/>
+			</Grid>
+		</Grid>
+		
+	</Grid>
 </UserControl>
